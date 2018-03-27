@@ -36,30 +36,3 @@ public class ServidorTCPBasico {
     //finally {...}  
   }     
 }
-
-class ThreadCliente extends Thread {
-    Socket socket;
-    DataOutputStream out;
-
-    public ThreadCliente(Socket socket) throws IOException {
-        this.socket = socket;
-        this.out = new DataOutputStream(socket.getOutputStream());
-        this.start();
-    }
-
-    @Override
-    public void run() {
-        String str = "HTTP 200 TUDO OK \r\n\r\n mensagem deu certo";
-        try {
-            this.out.writeBytes(str);
-            out.close();
-            socket.close();
-        } catch (IOException ex) {
-            Logger.getLogger(ThreadCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }
-     
-
-
-}
