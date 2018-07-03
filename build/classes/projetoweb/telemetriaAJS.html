@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Telemetria</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+        <div class = "container" ng-app="angular-telemetria" ng-controller="AngularTelemetria">
+                <h2>Telemetria com AngularJS</h2>         
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Conexões</th>
+                      <th>Tempo Online</th>
+                      <th>Data Inicial</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{{conexoes}} conexões.</td>
+                      <td>{{tempoOnline}}</td>
+                      <td>{{dataInicial}}</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+        </div>
+    
+</body>
+
+<script>
+            var aux = angular.module("angular-telemetria", []);
+            
+            aux.controller("AngularTelemetria", function($scope, $http){
+                $http.get('http://localhost:5555/virtual/status/status.json').then(function(resposta){
+                    $scope.conexoes = resposta.data.conexoes
+                    $scope.tempoOnline = resposta.data.tempoOnline
+                    $scope.dataInicial = resposta.data.dataInicial
+                })
+
+                })
+
+            </script>
+</html>

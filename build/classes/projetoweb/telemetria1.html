@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Telemetria</title>
+        <!-- Bootstrap CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+</head>
+<style>
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: relative;
+    z-index: 1;
+    
+}
+
+.tooltip2 {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+    top: 40px;
+}
+
+.tooltip2 .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: relative;
+    z-index: 1;
+}
+
+.tooltip2:hover .tooltiptext {
+    visibility: visible;
+}
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+</style>
+<body style="text-align:center;">
+
+<p>Passe o mouse em cima para obter dados sobre:</p>
+
+<div class="tooltip">Conexoes    
+  <span class="tooltiptext"> Num:  <%C C%>    </span>
+</div>
+
+<div class="tooltip2">Tempo online     
+  <span class="tooltiptext"><%t t%></span>
+</div>
+
+<div class="tooltip">Data inicial     
+  <span class="tooltiptext"><%i i%></span>
+</div>
+<p></p>
+
+
+</body>
+</html>

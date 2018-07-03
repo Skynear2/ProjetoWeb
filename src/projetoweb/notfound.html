@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Not Found</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  .btn-default {
+    background: #000;
+    color: #fff;
+ }
+.btn-default:hover {
+    background: #fff;
+    color: #000;
+ }
+ .headtext{
+    position: relative;
+    top: 0px;
+    left: 500px;
+    font-size: 600%;
+    animation-name: head;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+#text2{
+    animation-delay: 2s;
+}
+
+@keyframes head {
+    0% {font-size:600%; opacity:1;}
+    50% {font-size:0; opacity:0;}
+    100% {font-size:600%;opacity:1;}
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes mymove {
+    from {left: 0px;}
+    to {left: 300px;}
+}
+
+/* Standard syntax */
+@keyframes mymove {
+    from {left: 0px;}
+    to {left: 300px;}
+}
+
+</style>
+ <h1 class="headtext" id="text1">Not Found</h1>
+</head>
+<body>
+    
+<div class="container">
+  <h2>Por favor envie seu feedback.</h2>
+  <form class="form-horizontal" form method="POST" action="virtual/feedback">
+    <div class="form-group">
+      <label for="feedback">Feedback:</label>
+      <form method="POST" action="virtual/feedback">
+      <input type="feedback" class="form-control" id="feedback" placeholder="Enter feedback" name="feeeback">
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>
+
+</body>
+</html>
