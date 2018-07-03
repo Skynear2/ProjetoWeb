@@ -61,9 +61,7 @@ class Worker extends Thread {
     long dataInicialLong;
     String dataInicial;
 
-//    String exePathFile;
-//    String exeResposta;
-//    String exeHtml;
+
     public BufferedReader getIn() {
         return in;
     }
@@ -122,16 +120,7 @@ class Worker extends Thread {
         String msg;
         String[] first;
 
-        //List<String> listasplit = new ArrayList();
-        /*this.setHTTPmethod(first[0]);
-        if(first[1].contains("?")) {
-            String[] aux = first[1].split("?");
-            this.setResourcePATH(aux[0]);
-            this.setQParam(aux[1]);
-        }
-        else{
-            this.setResourcePATH(first[1]);}
-        this.setHTTPProtocol(first[2]);*/
+       
         while (!(msg = in.readLine()).equals("")) {
             if (flag == 0) {
                 first = msg.split(" ");
@@ -160,15 +149,7 @@ class Worker extends Thread {
                 this.headerMap.put(first[0], first[1]);
             }
         }
-        /*    String[] spli = msg.split(": ");
-            //System.out.println("split1: "+spli[0]+" split 2: "+spli[1]);
-            this.myMap.put(spli[0], spli[1]);
-            if (msg.equals("")) {
-                break;
-            }
-        }
-        
-         */
+       
         System.out.println("-------------------------------------");
     }
 
@@ -240,18 +221,8 @@ class Worker extends Thread {
 
     }
 
-    /*public void executaexe() throws IOException {
-        Process processo = Runtime.getRuntime().exec(this.ResourcePATH);
-        BufferedReader in = new BufferedReader(new InputStreamReader(processo.getInputStream()));
-        String linha;
-        while ((linha = in.readLine()) != null) {
-            if (this.exeResposta.isEmpty()){
-            this.exeResposta = linha;
-        }
-        this.exeResposta =this.exeResposta.concat(linha);
-        }
-   }
-     */
+
+   
     public void subResposta() {
         String regex = Pattern.quote("<%") + "(.*?)" + Pattern.quote("%>");
         this.dynfile = this.dynfile.replaceAll(regex, this.dynResponse);
@@ -322,21 +293,7 @@ class Worker extends Thread {
         this.out.flush();
         //this.tudoOk();
         this.readFile(file);
-//        this.out.write("<!DOCTYPE html>"+
-//                        "<html>"+
-//                        "<title>Not Found</title>"+
-//                        "<body>"+
-//                            "<div style=\"width: 100%\">"+
-//                                "<h1>Not Found</h1>"+
-//                                "<form action=\"/virtual/feedback\" method=\"POST\">"+
-//                                "Feedback:<br>"+
-//                                "<input type=\"text\" name=\"feedback\" value=\"\">"+
-//                                " <br>"+
-//                                "<input type=\"submit\" value=\"Submit\">"+
-//                                "</form>"+
-//                             "</div>"+
-//                            "</body>"+
-//                            "</html> ");
+
 
     }
 
@@ -366,9 +323,7 @@ class Worker extends Thread {
                     String html = new String();
                     for (File f : arquivosAux) {
 
-                        // html = "<tr><td valign=\"top\">"+"<img src=\"/src/unknown.gif\" alt=\"[   ]\"></td>"+"<td><a href=\">kurumin-7.0.iso</a>"
-//                        html = html.concat("<tr><td valign=\"top\"></td><td><a href=\"" + f.getName() + "\">" + f.getName()
-//                    + "</a></td><td></td><td>" + f.length() + "</td></tr>\n");
+                        
                         FileTime auxiliar = Files.getLastModifiedTime(fpath);
                         String last = auxiliar.toString();
                         String[] aux2 = last.split("T");
@@ -522,8 +477,7 @@ class Worker extends Thread {
         long hora = (dif / (60 * 60 * 1000)) % 24;
         String strFinal;
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        //strFinal = String.format("%02d", hours)+":"+String.format("%02d", min)+ ":" + String.format("%02d", sec);
-        //System.out.println(strFinal);
+        
         return (String.format("%02d:%02d:%02d", hora, min, sec));
 
     }
@@ -552,15 +506,14 @@ class Worker extends Thread {
 
         str[1] = str[1].replace("+", " ");
         System.out.println("connexoes " + this.conexoes);
-//System.out.println("POST POST POST POST  str1 "+str[1] );
-        //this.headerMapFeedback.put(str[0], str[1]);
+
         Date d = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss");
         File f = new File("src/feedback/" + sdf.format(d) + ".txt");
         f.createNewFile();
         String path = "src/feedback/" + sdf.format(d) + ".txt";
         escritor(path, str[1]);
-        //this.writeFeedback();
+        
     }
 
     public void chamaMetodo() throws IOException {
@@ -600,23 +553,7 @@ class Worker extends Thread {
         } else {
             this.concatenaResposta(this.criaCookie());
         }
-//        if (flag == true){
-//           String Cookieatual = (String)this.headerMap.get("Cookie");
-//        String[] corta;
-//        int Value;
-//        if (Cookieatual.contains("; ")) {
-//            corta = Cookieatual.split("; ");
-//            String[] lCookie = corta[0].split("=");
-//            Value = Integer.parseInt(lCookie[1]);
-//        } else {
-//            corta = Cookieatual.split("=");
-//            Value = Integer.parseInt(corta[1]);
-//        }
-//        this.Resposta.concat("set-cookie: count=" + (Value + 1) + "\r\n");
-//        }
-//        else {
-//            this.Resposta.concat("set-cookie: count=0\r\n");
-//        }
+
 
     }
 
@@ -625,11 +562,11 @@ class Worker extends Thread {
         String str = "HTTP 200 OK \r\n\r\n\r\n mensagem deu certo";
         try {
 
-            //  this.out.writeBytes(str);
+            
             processarCabecalho();
             cookie();
             chamaMetodo();
-            //Diretorios();
+            
             out.close();
             socket.close();
 
@@ -643,28 +580,3 @@ class Worker extends Thread {
     }
 }
 
-/*index of mostra primeira vez q ocorreu : 
-if key == cookie 
-processa cookie
-else
-this.header.put(key,value)
-
- */
- /*
-    this.requestCookie(key, value)
-
-switch (metodo)
-case get: process get  //verifica o path, ve se o resource existe   se for um DIR (diretorio)
-case post:
-case xxx:
-
- */
-
-/* 
-    count = 1 tem q vira 2
-    this.response cookie  == variavel global da classe
-
-linha / header / conteudo 
-
-this.responseHeader 
-*/
